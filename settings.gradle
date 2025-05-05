@@ -1,3 +1,4 @@
 rootProject.name = 'MetalConcertShop'
 include 'Model'
+include 'Repository'
 
