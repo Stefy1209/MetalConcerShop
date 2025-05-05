@@ -5,12 +5,16 @@ import core.Entity;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class AbstractUser extends Entity<UUID> {
+public class User extends Entity<UUID> {
     private String username;
     private String password;
+    private UserRole role;
 
-    public AbstractUser(UUID id, String username, String password) {
+    public User(UUID id, String username, String password, UserRole role) {
         super(id);
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -29,18 +33,22 @@ public abstract class AbstractUser extends Entity<UUID> {
         this.password = password;
     }
 
-    public abstract UserRole getRole();
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {}
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        AbstractUser that = (AbstractUser) o;
-        return Objects.equals(username, that.username) && Objects.equals(password, that.password);
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), username, password);
+        return Objects.hash(super.hashCode(), username, password, role);
     }
 }
