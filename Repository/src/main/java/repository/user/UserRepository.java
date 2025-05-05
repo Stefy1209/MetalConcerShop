@@ -1,8 +1,8 @@
 package repository.user;
 
 import repository.Repository;
-import user.AbstractUser;
+import user.User;
 
 import java.util.UUID;
 
-public interface UserRepository extends Repository<UUID, AbstractUser> {}
+public interface UserRepository extends Repository<UUID, User> {}
