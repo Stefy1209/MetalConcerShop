@@ -127,4 +127,28 @@ public class UserDbRepository implements UserRepository {
 
         return user;
     }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        Connection connection = jdbcUtils.getConnection();
+        Optional<User> user = Optional.empty();
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement("select id, password, role from users where username = ?")) {
+            preparedStatement.setString(1,username);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    UUID uuid = UUID.fromString(resultSet.getString("id"));
+                    String password = resultSet.getString("password");
+                    UserRole role = UserRole.fromCode(resultSet.getInt("role"));
+                    user = Optional.of(new User(uuid, username, password, role));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getSQLState());
+            System.err.println(e.getErrorCode());
+            System.err.println(e.getMessage());
+        }
+
+        return user;
+    }
 }
