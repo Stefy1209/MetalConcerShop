@@ -21,9 +21,9 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public boolean signUp(String username, String password, UserRole role) {
-        if(role.equals(UserRole.Admin)) {
+        /*if(role.equals(UserRole.Admin)) {
             return false;
-        }
+        }*/
 
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         User user = new User(UUID.randomUUID(), username, hashedPassword, role);
