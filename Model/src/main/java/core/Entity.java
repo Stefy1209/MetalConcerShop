@@ -1,9 +1,18 @@
 package core;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
 import java.util.Objects;
 
+@MappedSuperclass
 public class Entity<Tid> {
+    @Id
+    @Column(name = "id")
     private Tid id;
+
+    public Entity() {}
 
     public Entity(Tid id) {
         this.id = id;

@@ -1,14 +1,30 @@
 package user;
 
 import core.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 import java.util.UUID;
 
+@jakarta.persistence.Entity
+@Table(name = "users")
 public class User extends Entity<UUID> {
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Convert(converter = UserRoleConverter.class)
+    @Column(name = "role")
     private UserRole role;
+
+    public User() {
+        super();
+    }
 
     public User(UUID id, String username, String password, UserRole role) {
         super(id);

@@ -5,9 +5,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import repository.concert.ConcertDbRepository;
+import repository.concert.ConcertHibernateRepository;
 import repository.concert.ConcertRepository;
-import repository.user.UserDbRepository;
+import repository.user.UserHibernateRepository;
 import repository.user.UserRepository;
 import user.UserService;
 import user.UserServiceInterface;
@@ -41,10 +41,10 @@ public class StartApp extends Application {
             return;
         }
 
-        UserRepository userRepository = new UserDbRepository(dbProperties);
+        UserRepository userRepository = new UserHibernateRepository();
         userService = new UserService(userRepository);
 
-        ConcertRepository concertRepository = new ConcertDbRepository(dbProperties);
+        ConcertRepository concertRepository = new ConcertHibernateRepository();
         concertService = new ConcertService(concertRepository);
 
         launch();

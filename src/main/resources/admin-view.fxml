@@ -18,7 +18,9 @@
             </ListView>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="161.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addConcert" prefHeight="25.0" prefWidth="166.0" text="Add Concert" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#addConcert" prefHeight="25.0" prefWidth="166.0" text="Add Concert" />
+                  <Button mnemonicParsing="false" onAction="#removeConcert" prefHeight="25.0" prefWidth="166.0" text="Remove Concert" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#updateConcert" prefHeight="25.0" prefWidth="166.0" text="Update Concert" />
                </children>
                <HBox.margin>
                   <Insets />

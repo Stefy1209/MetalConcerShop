@@ -1,16 +1,32 @@
 package concert;
 
 import core.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+@jakarta.persistence.Entity
+@Table(name = "concerts")
 public class Concert extends Entity<UUID> {
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "location")
     private String location;
+
+    @Column(name = "artist")
     private String artist;
+
+    @Column(name = "date")
     private LocalDateTime date;
+
+    public Concert() {
+        super();
+    }
 
     public Concert(UUID id, String name, String location, String artist, LocalDateTime date) {
         super(id);

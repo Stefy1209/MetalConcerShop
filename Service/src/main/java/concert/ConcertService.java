@@ -28,4 +28,19 @@ public class ConcertService implements ConcertServiceInterface {
     public List<Concert> getConcerts() {
         return (List<Concert>) concertRepository.findAll();
     }
+
+    @Override
+    public Optional<Concert> removeConcert(UUID id) {
+        return concertRepository.delete(id);
+    }
+
+    @Override
+    public Optional<Concert> updateConcert(Concert concert, String name, String location, String artist, LocalDateTime date) {
+        concert.setName(name);
+        concert.setLocation(location);
+        concert.setArtist(artist);
+        concert.setDate(date);
+
+        return (concertRepository.update(concert).isEmpty()) ? Optional.of(concert) : Optional.empty();
+    }
 }
